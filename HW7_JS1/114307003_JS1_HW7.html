@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>114307003_HW7_1A2B</h1>
+  			輸入4個不同的數字
+  			<input id="answerInput"  type ="text" maxlength="4">
+  			<button id="submitBtn">猜!</button>
+  			<p id="msg"></p>
+
+  			<h3>歷史紀錄：</h3>
+<ul id="history"></ul>
+  	<script>
+
+  		function generateAnswer() {
+    const digits = [];
+    while (digits.length < 4) {
+        const num = Math.floor(Math.random() * 10).toString();
+        if (!digits.includes(num)) digits.push(num);
+    }
+    return digits.join('');
+}
+  		const answer = generateAnswer();
+			console.log("答案（debug用）：", answer);
+
+  		document.getElementById("submitBtn").addEventListener("click", function () {
+    const input = document.getElementById("answerInput").value;
+    const msg = document.getElementById("msg");
+     const history = document.getElementById("history");
+
+    	 if (!/^\d{4}$/.test(input)) {
+        msg.textContent = "❌ 必須是 4 位數字！";
+        return;
+}
+        	 const digits = input.split('');
+    const uniqueDigits = new Set(digits);
+
+    if (uniqueDigits.size !== 4) {
+        msg.textContent = "❌ 4 個數字不能重複！";
+        return;
+    }
+   let A = 0, B = 0;
+    for (let i = 0; i < 4; i++) {
+        if (input[i] === answer[i]) {
+            A++;
+        } else if (answer.includes(input[i])) {
+            B++;
+        }
+    }
+  msg.textContent = `你猜：${input} → ${A}A${B}B`;
+     const li = document.createElement("li");
+    li.textContent = `${input} → ${A}A${B}B`;
+    history.appendChild(li);	
+
+     if (A === 4) {
+        msg.textContent = `🎉 恭喜！猜對了，答案是 ${answer}`;
+        alert("遊戲結束！你猜對了！");
+        document.getElementById("submitBtn").disabled = true;
+        document.getElementById("answerInput").disabled = true;
+        }
+        	document.getElementById("answerInput").value = '';
+        });
+</script>
+
+
+
+
+
+</body>
+</html>
