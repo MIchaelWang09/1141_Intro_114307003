@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet"type="text/css"href="style.css">
+	<script src="script.js"></script>
+</head>
+<body>
+<h1>Grade Statistics</h1>
+<div class="input-controls">
+<input id="mathScore"type="number" placeholder="Math"oninput="filterNonDigits(this)"min="0"max="100">
+<input id="englishScore"type="number"placeholder="English"oninput="filterNonDigits(this)"min="0"max="100">
+<button onClick="myFunction()">submit</button>
+</div>
+<table id="gradeTable">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Math</th>
+			<th>English</th>
+			<th>Average</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+	<tfoot>
+		<tr id="averageRow">
+			<th>Average</th>
+			<td id="avgMath">0.00</td>
+			<td id="avgEnglish">0.00</td>
+			<td id="avgOverall">0.00</td>
+		</tr>
+	</tfoot>
+</table>
+</body>
+</html>
